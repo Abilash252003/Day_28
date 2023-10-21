@@ -1,0 +1,35 @@
+///100 Days of RTL///
+
+///Abilash P///
+
+///3:8 decoder in behavioral flow model///
+
+module dec_3_to_8 (A, en, Y);
+
+input  [2:0]A;
+input  en;
+
+output reg[7:0]Y;
+
+always @(*)
+begin
+  if(en==0)
+  begin
+    case({A[2],A[1],A[0]})
+    3'b000   : Y = {7'b0, 1'b1};
+    3'b001   : Y = {6'b0, 1'b1, 1'b0};
+    3'b010   : Y = {5'b0, 1'b1, 2'b0};
+    3'b011   : Y = {4'b0, 1'b1, 3'b0};
+    3'b100   : Y = {3'b0, 1'b1, 4'b0};
+    3'b101   : Y = {2'b0, 1'b1, 5'b0};
+    3'b110   : Y = {1'b0, 1'b1, 6'b0};
+    3'b111   : Y = {7'b1, 7'b0};
+    default  : Y = 7'b0;
+    endcase
+  end
+  else
+      Y = 7'bx;
+end
+
+
+endmodule
